@@ -1,0 +1,17 @@
+.logo_container {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem; 
+}
+
+.logo_container p {
+  color: var(--blue);
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.logo_container strong {
+  color: var(--green);
+  font-size: 1.5rem;
+  font-weight: 700;
+}

@@ -1,16 +1,17 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import LogoIcon from '../../assets/LogoIcon';
 import { userLogin } from '../../redux/actions';
 import { UserLoginData } from '../../types/redux';
 import { loginValidation } from '../../utils/loginValidation';
 import Button from '../Button';
+import Logo from '../Logo';
 import style from './login_form.module.css';
 
 function LoginForm() {
-  const { register, handleSubmit, formState, reset } = useForm({
+  const { register, handleSubmit, formState, reset, setFocus } = useForm({
     mode: 'onSubmit',
     resolver: yupResolver(loginValidation),
     defaultValues: {
@@ -28,17 +29,20 @@ function LoginForm() {
     reset();
     navigate('/carteira');
   };
+
+  useEffect(() => {
+    if (formState.defaultValues?.email === '') {
+      setFocus('email');
+    }
+  }, [setFocus, formState.defaultValues?.email]);
+
   return (
     <form
       onSubmit={ handleSubmit(handleSubmitData) }
       className={ style.form_login }
     >
       <header className={ style.form_header }>
-        <LogoIcon />
-        <p>
-          Trybe
-          <strong>Wallet</strong>
-        </p>
+        <Logo />
       </header>
       <fieldset className={ style.input_container }>
         <label htmlFor="email-input" className={ style.label }>

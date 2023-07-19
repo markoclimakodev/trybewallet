@@ -3,7 +3,6 @@
   --blue: #003BE5;
   --smoke: #F9FDFF;
   --shadow: #036b524d;
-
 }
 
 * {
@@ -12,5 +11,12 @@
   box-sizing: border-box;
   font-size: 16px;
   font-family: 'Epilogue', sans-serif;
+}
 
+body {
+  background: url('../src/assets/loginBg.jpg');
+  background-blend-mode: luminosity;
+  background-color: var(--green);
+  background-repeat: no-repeat;
+  background-size: cover;
 }

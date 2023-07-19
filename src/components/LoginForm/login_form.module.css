@@ -9,22 +9,7 @@
 }
 
 .form_header {
-  align-items: center;
-  display: flex;
-  gap: 0.5rem;
   padding-bottom: 2.78rem;
-}
-
-.form_header p {
-  color: var(--blue);
-  font-size: 1.5rem;
-  font-weight: 400;
-}
-
-.form_header strong {
-  color: var(--green);
-  font-size: 1.5rem;
-  font-weight: 700;
 }
 
 .input_container {
@@ -51,11 +36,15 @@
   border-radius: 0.312rem;
   color: var(--blue);
   height: 100%;
-  outline-style: 1px solid var(--blue);
   padding: 0.8rem;
   width: 100%;
 }
 
 .input::placeholder {
   color: var(--blue);
+}
+
+.input:focus-within {
+  border: none;
+  outline: 1px solid var(--green);
 }
