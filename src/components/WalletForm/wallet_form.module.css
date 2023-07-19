@@ -1,0 +1,44 @@
+.wallet_form {
+  display: flex;
+  background: var(--smoke);
+  width: 64.812rem;
+  height: 30.12rem;
+  flex-shrink: 0;
+  border-radius: 0.625rem;
+  box-shadow: -4px 9px 13px 0px var(--shadow);
+}
+
+.wallet_form_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+
+}
+
+.wallet_header_section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.wallet_header_section p {
+  color: var(--blue);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.expenses {
+  color: var(--blue);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.user_email {
+  color: var(--green);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+}

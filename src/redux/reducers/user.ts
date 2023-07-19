@@ -2,7 +2,7 @@
 
 import { AnyAction } from 'redux';
 import { UserLoginData } from '../../types/redux';
-import { USER_LOGIN } from '../actions';
+import { USER_LOGIN } from '../actions/userLogin';
 
 export const USER_LOGIN_INITIAL_STATE: UserLoginData = {
   email: '',

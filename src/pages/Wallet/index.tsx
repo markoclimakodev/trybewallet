@@ -1,12 +1,11 @@
-import Logo from '../../components/Logo';
+import WalletForm from '../../components/WalletForm';
+import style from './wallet.module.css';
 
 function Wallet() {
   return (
-    <div>
-      TrybeWallet
-      <Logo />
-      ;
-    </div>
+    <section className={ style.wallet_page_container }>
+      <WalletForm />
+    </section>
   );
 }
 
