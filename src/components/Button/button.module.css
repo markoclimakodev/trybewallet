@@ -1,0 +1,35 @@
+.button {
+  background: var(--blue);
+  border: 1px solid var(--blue);
+  border-radius: 0.312rem;
+  color: var(--smoke);
+  flex-shrink: 0;
+  font-size: 0.875rem;
+  font-weight: 700;
+  height: 2.5rem;
+  text-align: center;
+  width: 20.625rem;
+}
+
+.button_Green {
+  background: var(--green);
+  border: 1px solid var(--green);
+  border-radius: 0.312rem;
+  color: var(--smoke);
+  flex-shrink: 0;
+  font-size: 0.875rem;
+  font-weight: 700;
+  height: 2.5rem;
+  text-align: center;
+  width: 20.625rem;
+}
+
+.button:hover , .button_Green:hover {
+  cursor: pointer;
+  filter: brightness(90%);
+}
+
+.button:disabled , .button_Green:disabled {
+  cursor: not-allowed;
+}
+
