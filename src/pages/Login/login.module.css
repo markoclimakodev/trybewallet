@@ -1,0 +1,12 @@
+.login_page_container {
+  align-items: center;
+  background: url('../../assets/loginBg.jpg');
+  background-blend-mode: luminosity;
+  background-color: var(--green);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100%;
+}
