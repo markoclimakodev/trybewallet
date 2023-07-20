@@ -1,7 +1,7 @@
 // Esse reducer será responsável por tratar as informações da pessoa usuária
 
 import { AnyAction } from 'redux';
-import { UserLoginData } from '../../types/redux';
+import { UserLoginData } from '../../types';
 import { USER_LOGIN } from '../actions';
 
 export const USER_LOGIN_INITIAL_STATE: UserLoginData = {
@@ -9,7 +9,7 @@ export const USER_LOGIN_INITIAL_STATE: UserLoginData = {
   password: '',
 };
 
-const userLoginDataReducer = (
+const user = (
   state: UserLoginData = USER_LOGIN_INITIAL_STATE,
   action:AnyAction,
 ) => {
@@ -23,4 +23,4 @@ const userLoginDataReducer = (
   }
 };
 
-export default userLoginDataReducer;
+export default user;

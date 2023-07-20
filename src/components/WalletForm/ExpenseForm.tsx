@@ -1,10 +1,12 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getCurrencies, updateExpenses } from '../../redux/actions';
 import { fetchCurrencyExchangeRate } from '../../services/api';
-import { ExpensesData, RootReducerState } from '../../types/redux';
+import { ExpensesData, RootReducerState } from '../../types';
+import { expenseValidation } from '../../utils/loginValidation';
 import Button from '../Button';
 import style from './wallet_form.module.css';
 
@@ -22,6 +24,7 @@ function ExpenseForm() {
   const [id, setId] = useState(0);
   const { register, handleSubmit, reset } = useForm({
     defaultValues: formInitalValues,
+    resolver: yupResolver(expenseValidation),
   });
 
   useEffect(() => {
@@ -30,17 +33,18 @@ function ExpenseForm() {
 
   const getExchangeRate = async () => {
     const exchangeRateData = await fetchCurrencyExchangeRate();
+    console.log(exchangeRateData);
     return exchangeRateData;
   };
 
-  const handleSubmitExpensesData = async (data:ExpensesData) => {
+  const handleSubmitExpensesData = async (data: ExpensesData) => {
     const newExpense = {
       id,
       ...data,
       exchangeRates: await getExchangeRate(),
     };
-    dispatch(updateExpenses(newExpense));
     setId(id + 1);
+    dispatch(updateExpenses(newExpense));
     reset();
   };
 
@@ -56,6 +60,7 @@ function ExpenseForm() {
             id="description"
             type="text"
             data-testid="description-input"
+            required
             { ...register('description') }
           />
         </label>
@@ -66,11 +71,11 @@ function ExpenseForm() {
             data-testid="tag-input"
             { ...register('tag') }
           >
-            <option value="Alimentacao">Alimentação</option>
+            <option value="Alimentacão">Alimentação</option>
             <option value="Lazer">Lazer</option>
             <option value="Trabalho">Trabalho</option>
             <option value="Transporte">Transporte</option>
-            <option value="Saude">Saúde</option>
+            <option value="Saúde">Saúde</option>
           </select>
         </label>
         <label className={ style.expense_label } htmlFor="value">
@@ -91,7 +96,7 @@ function ExpenseForm() {
           >
             <option value="Dinheiro">Dinheiro</option>
             <option value="Cartão de crédito">Cartão de crédito</option>
-            <option value="Cartão de debito">Cartão de débito</option>
+            <option value="Cartão de débito">Cartão de débito</option>
           </select>
         </label>
         <label className={ style.expense_label } htmlFor="currency">
@@ -102,12 +107,12 @@ function ExpenseForm() {
             { ...register('currency') }
           >
 
-            { currencies && currencies.map((currency) => (
+            {currencies && currencies.map((currency) => (
               <option
                 value={ `${currency}` }
                 key={ `${currency}` }
               >
-                { `${currency}`}
+                {`${currency}`}
 
               </option>
             ))}

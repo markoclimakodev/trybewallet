@@ -1,14 +1,12 @@
 import { fetchCurrencyAcronyms } from '../../services/api';
-import { Dispatch, ExpensesData, UserLoginData } from '../../types/redux';
+import { Dispatch, ExpensesData, UserLoginData } from '../../types';
 
-// Action types
 export const USER_LOGIN = 'USER_LOGIN';
 export const REQUEST_CURRENCIES = 'REQUEST_CURRENCIES';
 export const REQUEST_SUCCESS = 'REQUEST_SUCCESS';
 export const REQUEST_ERROR = 'REQUEST_ERROR';
 export const UPDATE_EXPENSES = 'UPDATE_EXPENSES';
 
-// Action creators
 export const userLogin = (userLoginData: UserLoginData) => ({
   type: USER_LOGIN,
   payload: userLoginData,

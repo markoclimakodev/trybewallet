@@ -1,13 +1,13 @@
 .wallet_form {
   background: var(--smoke);
-  border-radius: 0rem 0rem 0.625rem 0.625rem;
+  border-radius: 0.1rem 0.1rem 0.625rem 0.625rem;
   box-shadow: -4px 9px 13px 1px var(--shadow);
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  height: 24.0625rem;
+  height: 24rem;
   padding: 1.5rem 0;
-  width: 64.812rem;
+  width: 64.5rem;
 }
 
 .wallet_form_header {
@@ -64,8 +64,7 @@
   align-items: center;
   color: var(--blue);
   display: flex;
-  font-family: Epilogue;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   font-weight: 700;
   gap: 0.5rem;
   height: 1.8rem;
@@ -74,35 +73,35 @@
 }
 
 .expense_label input , .expense_label select {
-  color: var(--blue);
-  border: 1px solid var(--blue);
-  border-radius: 0.3125rem;
-  height: 1.8rem;
   background: var(--smoke);
+  border: 1px solid var(--blue);
+  border-radius: 0.4rem;
+  color: var(--blue);
+  height: 1.8rem;
 }
 
 input:focus-within , select:focus-within {
   outline: 0.5px solid var(--green);
 }
 
-.expense_label:nth-child(1) input {
+.expense_label:nth-child( 1 ) input {
   width: 18rem;
 }
 
-.expense_label:nth-child(3) input {
-  width: 9.875rem;
+.expense_label:nth-child( 3 ) input {
+  width: 9.8rem;
 }
 
-.expense_label:nth-child(2) select {
-  width: 9.6875rem;
+.expense_label:nth-child( 2 ) select {
+  width: 9.6rem;
 }
 
-.expense_label:nth-child(4) select {
+.expense_label:nth-child( 4 ) select {
   width: 14.25rem;
 }
 
-.expense_label:nth-child(5) select {
-  width: 5.6875rem;
+.expense_label:nth-child( 5 ) select {
+  width: 5.6rem;
 }
 
 .expense_add_btn {

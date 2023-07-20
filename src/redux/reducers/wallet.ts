@@ -17,11 +17,11 @@ const walletReducer = (
         ...state,
         currencies: action.payload,
       };
-    // case REQUEST_ERROR:
-    //   return {
-    //     ...state,
-    //     error: action.payload.error,
-    //   };
+    case REQUEST_ERROR:
+      return {
+        ...state,
+        error: action.payload.error,
+      };
     case UPDATE_EXPENSES:
       return {
         ...state,

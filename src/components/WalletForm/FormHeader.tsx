@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import TotalExpensesIcon from '../../assets/TotalExpensesIcon';
 import UserIcon from '../../assets/UserIcon';
-import { ExpensesData, RootReducerState } from '../../types/redux';
+import { ExpensesData, RootReducerState } from '../../types';
 import Logo from '../Logo';
 import style from './wallet_form.module.css';
 
@@ -15,7 +15,6 @@ function FormHeader() {
     if (expenses.length === 0) {
       return;
     }
-    console.log('renderizou');
     const totalExpenses = () => {
       let totalExpense = 0;
       expenses.forEach((expense:ExpensesData) => {

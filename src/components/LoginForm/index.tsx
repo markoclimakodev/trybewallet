@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { userLogin } from '../../redux/actions';
-import { UserLoginData } from '../../types/redux';
+import { UserLoginData } from '../../types';
 import { loginValidation } from '../../utils/loginValidation';
 import Button from '../Button';
 import Logo from '../Logo';
