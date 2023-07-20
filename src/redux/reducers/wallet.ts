@@ -1,6 +1,6 @@
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 import { AnyAction } from 'redux';
-import { REQUEST_SUCCESS, UPDATE_EXPENSES } from '../actions';
+import { REQUEST_ERROR, REQUEST_SUCCESS, UPDATE_EXPENSES } from '../actions';
 
 const WALLET_INITAL = {
   currencies: [],
@@ -17,6 +17,11 @@ const walletReducer = (
         ...state,
         currencies: action.payload,
       };
+    // case REQUEST_ERROR:
+    //   return {
+    //     ...state,
+    //     error: action.payload.error,
+    //   };
     case UPDATE_EXPENSES:
       return {
         ...state,

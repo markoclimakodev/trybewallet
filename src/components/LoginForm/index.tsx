@@ -10,14 +10,15 @@ import Button from '../Button';
 import Logo from '../Logo';
 import style from './login_form.module.css';
 
+const loginInitalValues = {
+  email: '',
+  password: '',
+};
 function LoginForm() {
   const { register, handleSubmit, formState, reset, setFocus } = useForm({
     mode: 'onSubmit',
     resolver: yupResolver(loginValidation),
-    defaultValues: {
-      email: '',
-      password: '',
-    },
+    defaultValues: loginInitalValues,
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();

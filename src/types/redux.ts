@@ -1,3 +1,8 @@
+import { ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from 'redux';
+
+export type Dispatch = ThunkDispatch<RootReducerState, null, AnyAction>;
+
 export interface UserLoginData {
   email: string,
   password:string,

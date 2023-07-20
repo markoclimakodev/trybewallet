@@ -3,6 +3,7 @@
   --blue: #003BE5;
   --smoke: #F9FDFF;
   --shadow: #036b524d;
+  --smoke_100: #e1e5eb7d;;
 }
 
 * {
@@ -11,6 +12,7 @@
   box-sizing: border-box;
   font-size: 16px;
   font-family: 'Epilogue', sans-serif;
+  border: none;
 }
 
 body {

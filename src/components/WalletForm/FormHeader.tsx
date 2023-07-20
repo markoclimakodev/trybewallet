@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import TotalExpensesIcon from '../../assets/TotalExpensesIcon';
 import UserIcon from '../../assets/UserIcon';
-import { RootReducerState } from '../../types/redux';
+import { ExpensesData, RootReducerState } from '../../types/redux';
 import Logo from '../Logo';
 import style from './wallet_form.module.css';
 
@@ -12,12 +12,18 @@ function FormHeader() {
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
+    if (expenses.length === 0) {
+      return;
+    }
+    console.log('renderizou');
     const totalExpenses = () => {
       let totalExpense = 0;
-      expenses.forEach((expense, index) => {
+      expenses.forEach((expense:ExpensesData) => {
         if (expense.exchangeRates) {
-          const exchangeRate = Object.values(expense.exchangeRates)[index].ask;
-          totalExpense += Number(expense.value) * Number(exchangeRate);
+          const exchangeRate: number = (
+            Number(expense.value) * Number(expense.exchangeRates[expense.currency].ask)
+          );
+          totalExpense += exchangeRate;
         }
       });
       setTotal(totalExpense);

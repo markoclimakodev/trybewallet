@@ -1,10 +1,12 @@
 .wallet_form {
   background: var(--smoke);
-  border-radius: 0.625rem;
+  border-radius: 0rem 0rem 0.625rem 0.625rem;
   box-shadow: -4px 9px 13px 1px var(--shadow);
   display: flex;
-  flex-shrink: 0;
-  height: 30.12rem;
+  flex-direction: column;
+  gap: 2rem;
+  height: 24.0625rem;
+  padding: 1.5rem 0;
   width: 64.812rem;
 }
 
@@ -40,4 +42,70 @@
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 500;
+}
+
+.expense_form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.expense_container {
+  align-items: center;
+  background: var(--smoke_100);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  padding: 1.5rem 6rem;
+}
+
+.expense_label {
+  align-items: center;
+  color: var(--blue);
+  display: flex;
+  font-family: Epilogue;
+  font-size: 0.875rem;
+  font-weight: 700;
+  gap: 0.5rem;
+  height: 1.8rem;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.expense_label input , .expense_label select {
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  border-radius: 0.3125rem;
+  height: 1.8rem;
+  background: var(--smoke);
+}
+
+input:focus-within , select:focus-within {
+  outline: 0.5px solid var(--green);
+}
+
+.expense_label:nth-child(1) input {
+  width: 18rem;
+}
+
+.expense_label:nth-child(3) input {
+  width: 9.875rem;
+}
+
+.expense_label:nth-child(2) select {
+  width: 9.6875rem;
+}
+
+.expense_label:nth-child(4) select {
+  width: 14.25rem;
+}
+
+.expense_label:nth-child(5) select {
+  width: 5.6875rem;
+}
+
+.expense_add_btn {
+  text-align: center;
+  width: 100%;
 }

@@ -21,15 +21,11 @@ function ExpenseForm() {
   const dispatch = useDispatch();
   const [id, setId] = useState(0);
   const { register, handleSubmit, reset } = useForm({
-    mode: 'onSubmit',
     defaultValues: formInitalValues,
   });
 
   useEffect(() => {
-    const fetchCurrencyData = async () => {
-      dispatch(getCurrencies());
-    };
-    fetchCurrencyData();
+    dispatch(getCurrencies());
   }, [dispatch]);
 
   const getExchangeRate = async () => {
@@ -50,77 +46,82 @@ function ExpenseForm() {
 
   return (
     <form
-      className={ style.expense_container }
       onSubmit={ handleSubmit(handleSubmitExpensesData) }
+      className={ style.expense_form }
     >
-      <label htmlFor="description-input">
-        Descrição da despesa
-        <input
-          id="description-input"
-          type="text"
-          data-testid="description-input"
-          { ...register('description') }
+      <fieldset className={ style.expense_container }>
+        <label className={ style.expense_label } htmlFor="description">
+          Descrição da despesa
+          <input
+            id="description"
+            type="text"
+            data-testid="description-input"
+            { ...register('description') }
+          />
+        </label>
+        <label className={ style.expense_label } htmlFor="tag">
+          Categoria da despesa
+          <select
+            id="tag"
+            data-testid="tag-input"
+            { ...register('tag') }
+          >
+            <option value="Alimentacao">Alimentação</option>
+            <option value="Lazer">Lazer</option>
+            <option value="Trabalho">Trabalho</option>
+            <option value="Transporte">Transporte</option>
+            <option value="Saude">Saúde</option>
+          </select>
+        </label>
+        <label className={ style.expense_label } htmlFor="value">
+          Valor
+          <input
+            id="value"
+            type="text"
+            data-testid="value-input"
+            { ...register('value') }
+          />
+        </label>
+        <label className={ style.expense_label } htmlFor="method">
+          Método de pagamento
+          <select
+            id="method"
+            data-testid="method-input"
+            { ...register('method') }
+          >
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Cartão de crédito">Cartão de crédito</option>
+            <option value="Cartão de debito">Cartão de débito</option>
+          </select>
+        </label>
+        <label className={ style.expense_label } htmlFor="currency">
+          Moeda
+          <select
+            id="currency"
+            data-testid="currency-input"
+            { ...register('currency') }
+          >
+
+            { currencies && currencies.map((currency) => (
+              <option
+                value={ `${currency}` }
+                key={ `${currency}` }
+              >
+                { `${currency}`}
+
+              </option>
+            ))}
+
+          </select>
+        </label>
+      </fieldset>
+      <fieldset className={ style.expense_add_btn }>
+
+        <Button
+          title="Adicionar despesa"
+          variantGreen
         />
-      </label>
-      <label htmlFor="tag-input">
-        Categoria da despesa
-        <select
-          id="tag-input"
-          data-testid="tag-input"
-          { ...register('tag') }
-        >
-          <option value="alimentacao">Alimentação</option>
-          <option value="lazer">Lazer</option>
-          <option value="trabalho">Trabalho</option>
-          <option value="transporte">Transporte</option>
-          <option value="saude">Saúde</option>
-        </select>
-      </label>
-      <label htmlFor="value-input">
-        Valor
-        <input
-          id="value-input"
-          type="text"
-          data-testid="value-input"
-          { ...register('value') }
-        />
-      </label>
-      <label htmlFor="method-input">
-        Método de pagamento
-        <select
-          id="method-input"
-          data-testid="method-input"
-          { ...register('method') }
-        >
-          <option value="dinheiro">Dinheiro</option>
-          <option value="credito">Cartão de crédito</option>
-          <option value="debito">Cartão de débito</option>
-        </select>
-      </label>
-      <label htmlFor="currency-input">
-        Moeda
-        <select
-          id="currency-input"
-          data-testid="currency-input"
-          { ...register('currency') }
-        >
-
-          { currencies && currencies.map((currency) => (
-            <option
-              value={ String(currency) }
-              key={ String(currency) }
-            >
-              {String(currency)}
-
-            </option>
-          ))}
-
-        </select>
-      </label>
-      <Button
-        id="expenses-btn"
-        title="Adicionar despesa"
-      />
+      </fieldset>
     </form>
   );
 }

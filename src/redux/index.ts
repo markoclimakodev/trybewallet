@@ -1,13 +1,15 @@
-import Cypress from 'cypress';
-import { applyMiddleware, legacy_createStore as createStore } from 'redux';
-import thunk from 'redux-thunk';
 import { composeWithDevTools } from '@redux-devtools/extension';
+import {
+  AnyAction, Store, applyMiddleware, legacy_createStore as createStore
+} from 'redux';
+import thunk from 'redux-thunk';
+import { RootReducerState } from '../types/redux';
 import rootReducer from './reducers';
 
 declare global {
   interface Window {
-    Cypress?: Cypress.Cypress;
-    store: ReturnType<typeof createStore>;
+    Cypress: any;
+    store: Store<RootReducerState, AnyAction>;
   }
 }
 
