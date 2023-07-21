@@ -1,10 +1,14 @@
-import { BiEdit, BiTrash } from 'react-icons/bi';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteExpense } from '../../redux/actions';
 import { RootReducerState } from '../../types';
 import style from './expense_table.module.css';
 
 function Table() {
   const expenses = useSelector((state:RootReducerState) => state.wallet.expenses);
+  const dispatch = useDispatch();
+  const handleExpenseDelete = (id:number) => {
+    dispatch(deleteExpense(id));
+  };
 
   return (
     <table className={ style.expense_table }>
@@ -39,8 +43,20 @@ function Table() {
 
             <td>{expense.currency}</td>
             <td>
-              <BiEdit role="button" color="#2FC18C" />
-              <BiTrash role="button" color="#DF3C6D" />
+              <button
+                type="button"
+                className={ style.action_btn }
+              >
+                edit
+              </button>
+              <button
+                type="button"
+                data-testid="delete-btn"
+                className={ style.action_btn }
+                onClick={ () => handleExpenseDelete(expense.id) }
+              >
+                delete
+              </button>
             </td>
           </tr>
         ))}

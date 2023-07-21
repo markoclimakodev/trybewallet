@@ -8,6 +8,7 @@
   height: 24rem;
   padding: 1.5rem 0;
   width: 64.5rem;
+  z-index: 1;
 }
 
 .wallet_form_header {

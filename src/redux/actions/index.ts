@@ -6,6 +6,7 @@ export const REQUEST_CURRENCIES = 'REQUEST_CURRENCIES';
 export const REQUEST_SUCCESS = 'REQUEST_SUCCESS';
 export const REQUEST_ERROR = 'REQUEST_ERROR';
 export const UPDATE_EXPENSES = 'UPDATE_EXPENSES';
+export const DELETE_EXPENSE = 'DELETE_EXPENSE';
 
 export const userLogin = (userLoginData: UserLoginData) => ({
   type: USER_LOGIN,
@@ -42,3 +43,10 @@ export const updateExpenses = (data:ExpensesData) => ({
   type: UPDATE_EXPENSES,
   payload: data,
 });
+
+export const deleteExpense = (id: number) => (
+  { type: DELETE_EXPENSE,
+    payload: id,
+  }
+
+);

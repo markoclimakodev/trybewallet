@@ -23,7 +23,7 @@ export interface Currency {
 }
 
 export interface ExpensesData {
-  id?: number,
+  id: number,
   value: string,
   description: string,
   currency: string,

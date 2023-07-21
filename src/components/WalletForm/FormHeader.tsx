@@ -13,9 +13,10 @@ function FormHeader() {
 
   useEffect(() => {
     if (expenses.length === 0) {
+      setTotal(0);
       return;
     }
-    const totalExpenses = () => {
+    const totalExpenses = async () => {
       let totalExpense = 0;
       expenses.forEach((expense:ExpensesData) => {
         if (expense.exchangeRates) {
