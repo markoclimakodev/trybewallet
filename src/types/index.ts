@@ -29,7 +29,7 @@ export interface ExpensesData {
   currency: string,
   method: string,
   tag: string,
-  exchangeRates?: CurrencyData
+  exchangeRates: CurrencyData
 }
 
 export interface CurrencyData {

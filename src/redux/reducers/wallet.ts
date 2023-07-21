@@ -1,5 +1,5 @@
-// Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 import { AnyAction } from 'redux';
+import { WalletData } from '../../types';
 import { REQUEST_ERROR, REQUEST_SUCCESS, UPDATE_EXPENSES } from '../actions';
 
 const WALLET_INITAL = {
@@ -8,7 +8,7 @@ const WALLET_INITAL = {
 };
 
 const walletReducer = (
-  state = WALLET_INITAL,
+  state:WalletData = WALLET_INITAL,
   action:AnyAction,
 ) => {
   switch (action.type) {

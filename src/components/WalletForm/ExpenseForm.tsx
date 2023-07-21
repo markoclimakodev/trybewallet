@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getCurrencies, updateExpenses } from '../../redux/actions';
 import { fetchCurrencyExchangeRate } from '../../services/api';
-import { ExpensesData, RootReducerState } from '../../types';
+import { RootReducerState } from '../../types';
 import { expenseValidation } from '../../utils/loginValidation';
 import Button from '../Button';
 import style from './wallet_form.module.css';
@@ -37,7 +37,7 @@ function ExpenseForm() {
     return exchangeRateData;
   };
 
-  const handleSubmitExpensesData = async (data: ExpensesData) => {
+  const handleSubmitExpensesData = async (data: any) => {
     const newExpense = {
       id,
       ...data,
