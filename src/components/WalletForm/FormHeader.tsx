@@ -51,12 +51,12 @@ function FormHeader() {
       </section>
       <section className={ style.wallet_header_section }>
         <UserIcon />
-        <span
+        <h2
           className={ style.user_email }
           data-testid="email-field"
         >
           {email}
-        </span>
+        </h2>
       </section>
     </header>
   );
