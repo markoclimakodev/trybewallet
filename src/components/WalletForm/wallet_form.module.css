@@ -6,7 +6,7 @@
   flex-direction: column;
   gap: 2rem;
   height: 24rem;
-  padding: 1.5rem 0;
+  padding: 3rem 0;
   width: 64.5rem;
   z-index: 1;
 }
@@ -79,6 +79,7 @@
   border-radius: 0.4rem;
   color: var(--blue);
   height: 1.8rem;
+  padding-left: 0.5rem;
 }
 
 input:focus-within , select:focus-within {
@@ -105,7 +106,26 @@ input:focus-within , select:focus-within {
   width: 5.6rem;
 }
 
-.expense_add_btn {
-  text-align: center;
+.expense_add_edit_btn {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
   width: 100%;
+}
+
+.cancel_editing {
+  background-color: var(--scarlat);
+  border-radius: 0.312rem;
+  color: var(--smoke);
+  flex-shrink: 0;
+  font-size: 0.875rem;
+  font-weight: 700;
+  height: 2.5rem;
+  text-align: center;
+  width: 20.625rem;
+}
+
+.cancel_editing:hover {
+  cursor: pointer;
+  filter: brightness(90%);
 }

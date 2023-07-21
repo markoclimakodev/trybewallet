@@ -2,27 +2,29 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { getCurrencies, updateExpenses } from '../../redux/actions';
+import {
+  cancelEditingExpense,
+  editExpensionMode,
+  getCurrencies,
+  updateEditedExpense,
+  updateExpenses,
+} from '../../redux/actions';
 import { fetchCurrencyExchangeRate } from '../../services/api';
-import { RootReducerState } from '../../types';
+import { RootReducerState, formInitalValues } from '../../types';
 import { expenseValidation } from '../../utils/loginValidation';
 import Button from '../Button';
 import style from './wallet_form.module.css';
 
-const formInitalValues = {
-  value: '',
-  description: '',
-  currency: '',
-  method: '',
-  tag: '',
-};
-
 function ExpenseForm() {
   const currencies = useSelector((state: RootReducerState) => state.wallet.currencies);
+  const editMode = useSelector((state: RootReducerState) => state.wallet.editMode);
+  const expenseToEdit = useSelector(
+    (state: RootReducerState) => state.wallet.expenseToEdit,
+  );
+
   const dispatch = useDispatch();
   const [id, setId] = useState(0);
-  const { register, handleSubmit, reset } = useForm({
+  const { register, handleSubmit, setValue, reset } = useForm({
     defaultValues: formInitalValues,
     resolver: yupResolver(expenseValidation),
   });
@@ -31,20 +33,41 @@ function ExpenseForm() {
     dispatch(getCurrencies());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (editMode && expenseToEdit) {
+      setValue('description', expenseToEdit.description);
+      setValue('tag', expenseToEdit.tag);
+      setValue('value', expenseToEdit.value);
+      setValue('method', expenseToEdit.method);
+      setValue('currency', expenseToEdit.currency);
+    }
+  }, [editMode, expenseToEdit, setValue]);
+
   const getExchangeRate = async () => {
     const exchangeRateData = await fetchCurrencyExchangeRate();
-    console.log(exchangeRateData);
     return exchangeRateData;
   };
 
   const handleSubmitExpensesData = async (data: any) => {
     const newExpense = {
-      id,
+      id: editMode ? expenseToEdit.id : id,
       ...data,
       exchangeRates: await getExchangeRate(),
     };
-    setId(id + 1);
-    dispatch(updateExpenses(newExpense));
+
+    if (editMode) {
+      dispatch(updateEditedExpense(newExpense));
+      dispatch(editExpensionMode(false));
+    } else {
+      dispatch(updateExpenses(newExpense));
+      setId((prevId) => prevId + 1);
+    }
+
+    reset();
+  };
+
+  const handleCancelEditing = () => {
+    dispatch(cancelEditingExpense());
     reset();
   };
 
@@ -120,12 +143,26 @@ function ExpenseForm() {
           </select>
         </label>
       </fieldset>
-      <fieldset className={ style.expense_add_btn }>
+      <fieldset className={ style.expense_add_edit_btn }>
+        {editMode ? (
+          <>
+            <Button
+              title="Cancelar"
+              onClick={ handleCancelEditing }
+              className={ style.cancel_editing }
+            />
+            <Button
+              title="Editar despesa"
+              variantGreen
+            />
+          </>
+        ) : (
+          <Button
+            title="Adicionar despesa"
+            variantGreen
+          />
+        )}
 
-        <Button
-          title="Adicionar despesa"
-          variantGreen
-        />
       </fieldset>
     </form>
   );

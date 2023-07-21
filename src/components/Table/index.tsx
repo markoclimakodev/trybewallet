@@ -1,15 +1,27 @@
+import { FiEdit, FiTrash2 } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteExpense } from '../../redux/actions';
+import {
+  deleteExpense,
+  editExpensionMode,
+  startEditingExpense,
+} from '../../redux/actions';
 import { RootReducerState } from '../../types';
 import style from './expense_table.module.css';
 
 function Table() {
   const expenses = useSelector((state:RootReducerState) => state.wallet.expenses);
   const dispatch = useDispatch();
+
   const handleExpenseDelete = (id:number) => {
     dispatch(deleteExpense(id));
   };
 
+  const handleExpenseToEdit = (expenseId: number) => {
+    dispatch(editExpensionMode(true));
+    dispatch(startEditingExpense(expenseId));
+  };
+
+  console.log();
   return (
     <table className={ style.expense_table }>
       <thead className={ style.table_header }>
@@ -45,9 +57,11 @@ function Table() {
             <td>
               <button
                 type="button"
+                data-testid="edit-btn"
                 className={ style.action_btn }
+                onClick={ () => handleExpenseToEdit(expense.id) }
               >
-                edit
+                <FiEdit color="#31c28d" />
               </button>
               <button
                 type="button"
@@ -55,7 +69,7 @@ function Table() {
                 className={ style.action_btn }
                 onClick={ () => handleExpenseDelete(expense.id) }
               >
-                delete
+                <FiTrash2 fill="#DF3C6D" color="#b92727" />
               </button>
             </td>
           </tr>

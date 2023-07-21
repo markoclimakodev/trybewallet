@@ -7,6 +7,10 @@ export const REQUEST_SUCCESS = 'REQUEST_SUCCESS';
 export const REQUEST_ERROR = 'REQUEST_ERROR';
 export const UPDATE_EXPENSES = 'UPDATE_EXPENSES';
 export const DELETE_EXPENSE = 'DELETE_EXPENSE';
+export const EDIT_EXPENSE_MODE = 'EDIT_EXPENSE_MODE';
+export const START_EDITING_EXPENSE = 'START_EDITING_EXPENSE';
+export const CANCEL_EDITING_EXPENSE = 'CANCEL_EDITING_EXPENSE';
+export const UPDATE_EDITED_EXPENSE = 'UPDATE_EDITED_EXPENSE';
 
 export const userLogin = (userLoginData: UserLoginData) => ({
   type: USER_LOGIN,
@@ -48,5 +52,23 @@ export const deleteExpense = (id: number) => (
   { type: DELETE_EXPENSE,
     payload: id,
   }
-
 );
+
+export const editExpensionMode = (editMode:boolean) => ({
+  type: EDIT_EXPENSE_MODE,
+  payload: editMode,
+});
+
+export const startEditingExpense = (expenseId: number) => ({
+  type: START_EDITING_EXPENSE,
+  payload: expenseId,
+});
+
+export const cancelEditingExpense = () => ({
+  type: CANCEL_EDITING_EXPENSE,
+});
+
+export const updateEditedExpense = (updatedExpense: ExpensesData) => ({
+  type: UPDATE_EDITED_EXPENSE,
+  payload: updatedExpense,
+});

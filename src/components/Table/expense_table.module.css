@@ -24,7 +24,7 @@
   font-size: 0.8rem;
   font-style: normal;
   font-weight: 700;
-  padding: 0.01rem;
+  padding: 0.08rem;
   width: 7rem;
 }
 
@@ -49,8 +49,8 @@
 }
 
 .table_body tr td {
-  border-bottom: 1px solid var(--green);
-  color: var(--green);
+  border-bottom: 1px solid var(--smoke);
+  color: var(--smoke);
   font-size: 0.8rem;
   font-style: normal;
   font-weight: 500;
