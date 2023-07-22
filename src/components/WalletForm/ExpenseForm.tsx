@@ -154,6 +154,7 @@ function ExpenseForm() {
             <Button
               title="Editar despesa"
               variantGreen
+              data-testid="save_edit"
             />
           </>
         ) : (

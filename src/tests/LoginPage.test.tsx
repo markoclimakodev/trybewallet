@@ -5,8 +5,8 @@ import Login from '../pages/Login';
 import { renderWithRouterAndRedux } from './helpers/renderWith';
 import { EMAIL_INITAL_STATE, EMAIL_INPUT, INVALID_TEST_EMAIL, INVALID_TEST_PASSWORD, LOGIN_BUTTON, PASSWORD_INITAL_STATE, PASSWORD_INPUT, VALID_TEST_EMAIL, VALID_TEST_PASSWORD } from './utils/constantes';
 
-describe('LoginForm Component Tests', () => {
-  it('Renders the login form with initial state', () => {
+describe('LoginForm component tests', () => {
+  it('should render the login form with initial state', () => {
     renderWithRouterAndRedux(<Login />);
 
     const email = screen.getByTestId(EMAIL_INPUT);
@@ -19,7 +19,7 @@ describe('LoginForm Component Tests', () => {
     expect(loginBtn).toBeDisabled();
   });
 
-  it('The login button is disabled when the email and password are invalid', async () => {
+  it('should disable the login button when the email or password are invalid', async () => {
     renderWithRouterAndRedux(<Login />);
 
     const email = screen.getByTestId(EMAIL_INPUT);
@@ -42,7 +42,7 @@ describe('LoginForm Component Tests', () => {
     expect(loginBtn).toBeDisabled();
   });
 
-  it('The login button is enable when the email and password are valid', async () => {
+  it('should enable the login button when the email and password are valid', async () => {
     renderWithRouterAndRedux(<Login />);
 
     const email = screen.getByTestId(EMAIL_INPUT);
@@ -57,7 +57,7 @@ describe('LoginForm Component Tests', () => {
     expect(loginBtn).toBeEnabled();
   });
 
-  it('Redirects to "/carteira" when the login button is clicked', async () => {
+  it('should redirect to "/carteira" when the login button is clicked', async () => {
     renderWithRouterAndRedux(<App />);
 
     const email = screen.getByTestId(EMAIL_INPUT);
