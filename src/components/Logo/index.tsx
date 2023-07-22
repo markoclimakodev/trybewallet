@@ -3,7 +3,10 @@ import style from './logo.module.css';
 
 function Logo() {
   return (
-    <section className={ style.logo_container }>
+    <section
+      className={ style.logo_container }
+      data-testid="logo"
+    >
       <LogoIcon />
       <p>
         Trybe
