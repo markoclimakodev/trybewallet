@@ -39,18 +39,22 @@ describe('Wallet page component tests', () => {
     uiElementes.forEach((uiElement) => expect(uiElement).toBeInTheDocument());
   });
 
-  it('should render the ExpenseForm with default values', () => {
+  it('should render the ExpenseForm with default values', async () => {
     renderWithRouterAndRedux(<Wallet />);
 
     const descriptionInput = screen.getByTestId(DESCRIPTION_INPUT);
     const tagInput = screen.getByTestId(TAG_SELECT);
     const valueInput = screen.getByTestId(VALUE_INPUT);
     const methodInput = screen.getByTestId(METHOD_SELECT);
+    const currencyInput = screen.getByTestId(CURRENCY_SELECT);
 
     expect(descriptionInput).toHaveValue('');
     expect(tagInput).toHaveValue(TAG_SELECTED_1);
     expect(valueInput).toHaveValue('');
     expect(methodInput).toHaveValue('Dinheiro');
+    await waitFor(() => {
+      expect(currencyInput).toHaveValue(CURRENCY_SELECTED_1);
+    });
   });
 });
 
