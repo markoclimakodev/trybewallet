@@ -13,7 +13,7 @@ export const formInitalValues = {
   description: '',
   currency: 'USD',
   method: 'Dinheiro',
-  tag: 'Alimentacão',
+  tag: 'Alimentação',
 };
 
 export interface Currency {

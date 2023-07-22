@@ -7,8 +7,13 @@ export const LOGIN_PASSWORD_INPUT_ID = /password-input/i;
 export const LOGIN_BUTTON = /entrar/i;
 
 // FormHeader Elements
+export const HEADER_ID = /expense-header/i;
 export const EMAIL_FIELD_ID = /email-field/i;
 export const EXPENSE_TOTAL_FIELD_ID = /total-field/i;
+
+export const FORMHEADER_ELEMENTS = [
+  HEADER_ID, LOGO_ID, EMAIL_FIELD_ID, EXPENSE_TOTAL_FIELD_ID,
+];
 
 // ExpenseForm Component
 export const EXPENSE_DESCRIPTION_INPUT_ID = /description-input/i;
@@ -23,6 +28,14 @@ export const EXPENSE_EDIT_BUTTON = /edit-btn/i;
 export const EXPENSE_DELETE_BUTTON = /delete-btn/i;
 export const EXPENSE_SAVE_EDIT_BUTTON = /salvar edição/i;
 export const EXPENSE_CANCEL_EDIT_BUTTON = /cancelar/i;
+
+export const EXPENSEFORM_UI_ELEMENTS = [
+  EXPENSE_DESCRIPTION_INPUT_ID,
+  EXPENSE_VALUE_INPUT_ID,
+  EXPENSE_METHOD_SELECT_ID,
+  EXPENSE_TAG_SELECT_ID,
+  CURRENCY_SELECT_ID,
+];
 
 // Table Headers
 export const TABLE_HEADERS = [
@@ -44,7 +57,7 @@ export const INVALID_EMAIL = 'email';
 export const INVALID_PASSWORD = '23456';
 
 export const TYPED_DESCRIPTION_1 = 'Frango frito';
-export const TYPED_DESCRIPTION_2 = 'Hambúrguer';
+export const TYPED_DESCRIPTION_2 = 'Balada';
 export const SELECTED_TAG_1 = 'Alimentação';
 export const SELECTED_TAG_2 = 'Lazer';
 export const TYPED_VALUE_1 = '23.50';

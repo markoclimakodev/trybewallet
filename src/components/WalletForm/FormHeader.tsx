@@ -31,7 +31,11 @@ function FormHeader() {
     totalExpenses();
   }, [expenses]);
   return (
-    <header className={ style.wallet_form_header }>
+    <header
+      className={ style.wallet_form_header }
+      data-testid="expense-header"
+
+    >
       <Logo />
       <section className={ style.wallet_header_section }>
         <TotalExpensesIcon />

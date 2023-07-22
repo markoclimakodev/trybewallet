@@ -94,7 +94,7 @@ function ExpenseForm() {
             data-testid="tag-input"
             { ...register('tag') }
           >
-            <option value="Alimentacão">Alimentação</option>
+            <option value="Alimentação">Alimentação</option>
             <option value="Lazer">Lazer</option>
             <option value="Trabalho">Trabalho</option>
             <option value="Transporte">Transporte</option>
@@ -152,9 +152,8 @@ function ExpenseForm() {
               className={ style.cancel_editing }
             />
             <Button
-              title="Editar despesa"
+              title="Salvar edição"
               variantGreen
-              data-testid="save_edit"
             />
           </>
         ) : (
