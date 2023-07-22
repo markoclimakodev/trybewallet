@@ -152,7 +152,7 @@ function ExpenseForm() {
               className={ style.cancel_editing }
             />
             <Button
-              title="Salvar edição"
+              title="Editar despesa"
               variantGreen
             />
           </>
