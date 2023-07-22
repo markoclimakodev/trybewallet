@@ -11,9 +11,9 @@ export interface UserLoginData {
 export const formInitalValues = {
   value: '',
   description: '',
-  currency: '',
-  method: '',
-  tag: '',
+  currency: 'USD',
+  method: 'Dinheiro',
+  tag: 'Alimentacão',
 };
 
 export interface Currency {
@@ -52,6 +52,7 @@ export type ExpenseType = {
   tag: string,
   id:number
 };
+
 export interface WalletData {
   currencies: CurrencyData[];
   expenses: ExpensesData[];

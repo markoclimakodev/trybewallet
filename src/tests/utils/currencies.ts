@@ -1,0 +1,17 @@
+export const currenciesOptions = [
+  'USD',
+  'CAD',
+  'GBP',
+  'ARS',
+  'BTC',
+  'LTC',
+  'EUR',
+  'JPY',
+  'CHF',
+  'AUD',
+  'CNY',
+  'ILS',
+  'ETH',
+  'XRP',
+  'DOGE',
+];

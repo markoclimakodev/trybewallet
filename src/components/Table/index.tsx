@@ -21,7 +21,6 @@ function Table() {
     dispatch(startEditingExpense(expenseId));
   };
 
-  console.log();
   return (
     <table className={ style.expense_table }>
       <thead className={ style.table_header }>

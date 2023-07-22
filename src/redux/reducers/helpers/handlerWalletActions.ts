@@ -29,6 +29,7 @@ export const handleEditExpenseMode = (state: WalletData, action: AnyAction) => (
 export const handleStartEditingExpense = (state: WalletData, action: AnyAction) => {
   const expenseIdToEdit = action.payload;
   const expenseToEdit = state.expenses.find((expense) => expense.id === expenseIdToEdit);
+  console.log(expenseToEdit);
   if (expenseToEdit) {
     return {
       ...state,
