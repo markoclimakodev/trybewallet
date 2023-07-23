@@ -38,7 +38,10 @@ function Table() {
       </thead>
       <tbody className={ style.table_body }>
         {expenses.length > 0 && expenses.map((expense) => (
-          <tr key={ expense.id }>
+          <tr
+            key={ expense.id }
+            data-testid={ expense.description }
+          >
             <td>{expense.description}</td>
             <td>{expense.tag}</td>
             <td>{expense.method}</td>

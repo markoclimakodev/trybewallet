@@ -1,6 +1,3 @@
-export const EMAIL_INITAL_STATE = '';
-export const PASSWORD_INITAL_STATE = '';
-
 export const VALID_TEST_EMAIL = 'alguem@email.com';
 export const VALID_TEST_PASSWORD = '123456';
 export const INVALID_TEST_EMAIL = 'email';

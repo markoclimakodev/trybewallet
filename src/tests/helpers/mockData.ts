@@ -209,7 +209,7 @@ export const mockData = {
   },
 };
 
-export const acronymsData = [
+export const currencyOptions = [
   'USD',
   'CAD',
   'GBP',
@@ -225,4 +225,18 @@ export const acronymsData = [
   'ETH',
   'XRP',
   'DOGE',
+];
+
+export const tagOptions = [
+  'Alimentação',
+  'Lazer',
+  'Trabalho',
+  'Transporte',
+  'Saúde',
+];
+
+export const methodOptions = [
+  'Dinheiro',
+  'Cartão de crédito',
+  'Cartão de débito',
 ];
