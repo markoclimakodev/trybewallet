@@ -1,68 +1,23 @@
-// Logo
-export const LOGO_ID = /logo/i;
+export const EMAIL_INITAL_STATE = '';
+export const PASSWORD_INITAL_STATE = '';
 
-// Login Form Elements
-export const LOGIN_EMAIL_INPUT_ID = /email-input/i;
-export const LOGIN_PASSWORD_INPUT_ID = /password-input/i;
+export const VALID_TEST_EMAIL = 'alguem@email.com';
+export const VALID_TEST_PASSWORD = '123456';
+export const INVALID_TEST_EMAIL = 'email';
+export const INVALID_TEST_PASSWORD = '23456';
+
+export const EMAIL_INPUT = 'email-input';
+export const PASSWORD_INPUT = 'password-input';
 export const LOGIN_BUTTON = /entrar/i;
-
-// FormHeader Elements
-export const HEADER_ID = /expense-header/i;
-export const EMAIL_FIELD_ID = /email-field/i;
-export const EXPENSE_TOTAL_FIELD_ID = /total-field/i;
-
-export const FORMHEADER_ELEMENTS = [
-  HEADER_ID, LOGO_ID, EMAIL_FIELD_ID, EXPENSE_TOTAL_FIELD_ID,
-];
-
-// ExpenseForm Component
-export const EXPENSE_DESCRIPTION_INPUT_ID = /description-input/i;
-export const EXPENSE_VALUE_INPUT_ID = /value-input/i;
-export const EXPENSE_METHOD_SELECT_ID = /method-input/i;
-export const EXPENSE_TAG_SELECT_ID = /tag-input/i;
-export const CURRENCY_SELECT_ID = /currency-input/i;
-
-// Wallet Action Buttons
-export const EXPENSE_ADD_BUTTON = /adicionar despesa/i;
-export const EXPENSE_EDIT_BUTTON = /edit-btn/i;
-export const EXPENSE_DELETE_BUTTON = /delete-btn/i;
-export const EXPENSE_SAVE_EDIT_BUTTON = /Editar despesa/i;
-export const EXPENSE_CANCEL_EDIT_BUTTON = /cancelar/i;
-
-export const EXPENSEFORM_UI_ELEMENTS = [
-  EXPENSE_DESCRIPTION_INPUT_ID,
-  EXPENSE_VALUE_INPUT_ID,
-  EXPENSE_METHOD_SELECT_ID,
-  EXPENSE_TAG_SELECT_ID,
-  CURRENCY_SELECT_ID,
-];
-
-// Table Headers
-export const TABLE_HEADERS = [
-  /Descrição/i,
-  /Tag/i,
-  /Método de pagamento/i,
-  /Valor/i,
-  /Moeda/i,
-  /Câmbio utilizado/i,
-  /Valor convertido/i,
-  /Moeda de conversão/i,
-  /Editar\/Excluir/i,
-];
-
-// Test Data for Login and Wallet Page
-export const VALID_EMAIL = 'alguem@email.com';
-export const VALID_PASSWORD = '123456';
-export const INVALID_EMAIL = 'email';
-export const INVALID_PASSWORD = '23456';
-
-export const TYPED_DESCRIPTION_1 = 'Frango frito';
-export const TYPED_DESCRIPTION_2 = 'Balada';
-export const SELECTED_TAG_1 = 'Alimentação';
-export const SELECTED_TAG_2 = 'Lazer';
-export const TYPED_VALUE_1 = '23.50';
-export const TYPED_VALUE_2 = '13.60';
-export const SELECTED_METHOD_1 = 'Cartão de crédito';
-export const SELECTED_METHOD_2 = 'Cartão de débito';
-export const SELECTED_CURRENCY_1 = 'USD';
-export const SELECTED_CURRENCY_2 = 'CAD';
+export const EMAIL_FIELD = 'email-field';
+export const HEADER_CURRENCY_FIELD = 'total-field';
+export const CURRENCY_INPUT = 'currency-input';
+export const VALUE_INPUT = 'value-input';
+export const METHOD_INPUT = 'method-input';
+export const TAG_INPUT = 'tag-input';
+export const BTN_ADD = /adicionar despesa/i;
+export const BTN_DELETE = 'delete-btn';
+export const DESCRIPTION_INPUT = 'description-input';
+export const TOTAL_FIELD = 'total-field';
+export const EDIT_INPUT = 'edit-btn';
+export const BTN_EDIT = 'edit-btn';
