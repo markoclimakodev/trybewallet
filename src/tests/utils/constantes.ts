@@ -13,6 +13,7 @@ export const LOGIN_BUTTON = /entrar/i;
 
 export const EMAIL_FIELD = 'email-field';
 export const HEADER_CURRENCY_FIELD = 'total-field';
+export const TOTAL_FIELD = 'total-field';
 
 export const DESCRIPTION_INPUT = 'description-input';
 export const VALUE_INPUT = 'value-input';
@@ -21,7 +22,7 @@ export const METHOD_SELECT = 'method-input';
 export const CURRENCY_SELECT = 'currency-input';
 
 export const BTN_ADD = /adicionar despesa/i;
+export const BTN_EDIT_EXPENSE = /Editar despesa/i;
+export const BTN_CANCEL_EDIT = /Cancelar/i;
 export const BTN_DELETE = 'delete-btn';
-export const TOTAL_FIELD = 'total-field';
-export const EDIT_INPUT = 'edit-btn';
 export const BTN_EDIT = 'edit-btn';

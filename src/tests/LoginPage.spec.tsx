@@ -4,7 +4,7 @@ import App from '../App';
 import Login from '../pages/Login';
 import { renderWithRouterAndRedux } from './helpers/renderWith';
 import { EMAIL_INPUT, INVALID_TEST_EMAIL, INVALID_TEST_PASSWORD, LOGIN_BUTTON, PASSWORD_INPUT, VALID_TEST_EMAIL, VALID_TEST_PASSWORD } from './utils/constantes';
-import { checkLoginButtonIsDisabled, checkLoginButtonIsEnabled, simulateUserTyping } from './utils/helperFunctions';
+import { checkLoginButtonIsDisabled, checkLoginButtonIsEnabled, simulateUserTypingOnLoginPage } from './utils/helperFunctions';
 
 describe('User Actions on Login Page', () => {
   it('should renders the LoginForm with the initial state', () => {
@@ -22,21 +22,21 @@ describe('User Actions on Login Page', () => {
   it('the login button should be disabled if both email and password are invalid.', async () => {
     renderWithRouterAndRedux(<Login />);
     checkLoginButtonIsDisabled();
-    await simulateUserTyping(INVALID_TEST_EMAIL, INVALID_TEST_PASSWORD);
+    await simulateUserTypingOnLoginPage(INVALID_TEST_EMAIL, INVALID_TEST_PASSWORD);
     checkLoginButtonIsDisabled();
   });
 
   it('the login button should be disabled if email or password are invalid.', async () => {
     renderWithRouterAndRedux(<Login />);
     checkLoginButtonIsDisabled();
-    await simulateUserTyping(INVALID_TEST_EMAIL, INVALID_TEST_PASSWORD);
+    await simulateUserTypingOnLoginPage(INVALID_TEST_EMAIL, INVALID_TEST_PASSWORD);
     checkLoginButtonIsDisabled();
   });
 
   it('the login button should be enabled if both email and password are valid.', async () => {
     renderWithRouterAndRedux(<Login />);
     checkLoginButtonIsDisabled();
-    await simulateUserTyping(VALID_TEST_EMAIL, VALID_TEST_PASSWORD);
+    await simulateUserTypingOnLoginPage(VALID_TEST_EMAIL, VALID_TEST_PASSWORD);
     checkLoginButtonIsEnabled();
   });
 
@@ -47,7 +47,7 @@ describe('User Actions on Login Page', () => {
 
     checkLoginButtonIsDisabled();
 
-    await simulateUserTyping(VALID_TEST_EMAIL, VALID_TEST_PASSWORD);
+    await simulateUserTypingOnLoginPage(VALID_TEST_EMAIL, VALID_TEST_PASSWORD);
 
     checkLoginButtonIsEnabled();
 

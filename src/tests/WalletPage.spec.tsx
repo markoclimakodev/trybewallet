@@ -1,22 +1,18 @@
-import { screen } from '@testing-library/dom';
+import { screen, waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import Wallet from '../pages/Wallet';
 import { renderWithRouterAndRedux } from './helpers/renderWith';
-import { BTN_ADD, CURRENCY_SELECT, DESCRIPTION_INPUT, EMAIL_FIELD, EMAIL_INPUT, HEADER_CURRENCY_FIELD, LOGIN_BUTTON, METHOD_SELECT, PASSWORD_INPUT, TAG_SELECT, VALID_TEST_EMAIL, VALID_TEST_PASSWORD, VALUE_INPUT } from './utils/constantes';
+import { CURRENCY_SELECT, DESCRIPTION_INPUT, EMAIL_FIELD, HEADER_CURRENCY_FIELD, LOGIN_BUTTON, METHOD_SELECT, TAG_SELECT, VALID_TEST_EMAIL, VALID_TEST_PASSWORD, VALUE_INPUT } from './utils/constantes';
+import { checkLoginButtonIsEnabled, checkUIElementsArePresent, simulateUserTypingOnLoginPage } from './utils/helperFunctions';
 
 describe('Wallet page Component Tests', () => {
   it('Renders the wallet page with all ui elements', async () => {
     renderWithRouterAndRedux(<App />);
 
-    const email = screen.getByTestId(EMAIL_INPUT);
-    const password = screen.getByTestId(PASSWORD_INPUT);
     const loginBtn = screen.getByRole('button', { name: LOGIN_BUTTON });
-
-    await userEvent.type(email, VALID_TEST_EMAIL);
-    await userEvent.type(password, VALID_TEST_PASSWORD);
-
-    expect(loginBtn).toBeEnabled();
+    await simulateUserTypingOnLoginPage(VALID_TEST_EMAIL, VALID_TEST_PASSWORD);
+    checkLoginButtonIsEnabled();
 
     await userEvent.click(loginBtn);
 
@@ -26,30 +22,24 @@ describe('Wallet page Component Tests', () => {
     expect(userEmailField).toHaveTextContent(VALID_TEST_EMAIL);
     expect(headerCurrencyField).toHaveTextContent('0.00');
 
-    const descriptionInput = screen.getByTestId(DESCRIPTION_INPUT);
-    const tagInput = screen.getByTestId(TAG_SELECT);
-    const valueInput = screen.getByTestId(VALUE_INPUT);
-    const methodInput = screen.getByTestId(METHOD_SELECT);
-    const currencyInput = screen.getByTestId(CURRENCY_SELECT);
-    const expenseTable = screen.getByRole('table');
-    const addExpenseBtn = screen.getByRole('button', {
-      name: BTN_ADD,
-    });
-    const uiElementes = [descriptionInput, tagInput, valueInput, methodInput, currencyInput, addExpenseBtn, expenseTable];
-    uiElementes.forEach((uiElement) => expect(uiElement).toBeInTheDocument());
+    checkUIElementsArePresent();
   });
 
-  it('Renders the ExpenseForm with default values', () => {
+  it('Renders the ExpenseForm with default values', async () => {
     renderWithRouterAndRedux(<Wallet />);
 
     const descriptionInput = screen.getByTestId(DESCRIPTION_INPUT);
-    const tagInput = screen.getByTestId(TAG_SELECT);
+    const tagSelect = screen.getByTestId(TAG_SELECT);
     const valueInput = screen.getByTestId(VALUE_INPUT);
-    const methodInput = screen.getByTestId(METHOD_SELECT);
+    const methodSelect = screen.getByTestId(METHOD_SELECT);
+    const currencySelect = screen.getByTestId(CURRENCY_SELECT);
 
     expect(descriptionInput).toHaveValue('');
-    expect(tagInput).toHaveValue('Alimentação');
+    expect(tagSelect).toHaveValue('Alimentação');
     expect(valueInput).toHaveValue('');
-    expect(methodInput).toHaveValue('Dinheiro');
+    expect(methodSelect).toHaveValue('Dinheiro');
+    await waitFor(() => {
+      expect(currencySelect).toBeInTheDocument();
+    });
   });
 });
