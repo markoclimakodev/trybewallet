@@ -104,8 +104,8 @@ export const simulateUserTypingOnExpenseForm = async (values:ExpenseValues) => {
   await userEvent.selectOptions(tagSelect, values.tag);
   await userEvent.type(valueInput, values.value);
   await userEvent.selectOptions(methodSelect, values.method);
-  await waitFor(() => {
-    userEvent.selectOptions(currencySelect, values.currency);
+  await waitFor(async () => {
+    await userEvent.selectOptions(currencySelect, values.currency);
   });
 };
 
