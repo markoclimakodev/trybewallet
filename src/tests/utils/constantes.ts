@@ -26,7 +26,7 @@ export const CURRENCY_SELECT_ID = /currency-input/i;
 export const EXPENSE_ADD_BUTTON = /adicionar despesa/i;
 export const EXPENSE_EDIT_BUTTON = /edit-btn/i;
 export const EXPENSE_DELETE_BUTTON = /delete-btn/i;
-export const EXPENSE_SAVE_EDIT_BUTTON = /salvar edição/i;
+export const EXPENSE_SAVE_EDIT_BUTTON = /Editar despesa/i;
 export const EXPENSE_CANCEL_EDIT_BUTTON = /cancelar/i;
 
 export const EXPENSEFORM_UI_ELEMENTS = [

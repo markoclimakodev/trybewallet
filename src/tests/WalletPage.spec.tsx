@@ -1,12 +1,12 @@
-import { screen } from '@testing-library/dom';
+import { screen, waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import { renderWithRouterAndRedux } from './helpers/renderWith';
 
 import Wallet from '../pages/Wallet';
 import { formInitalValues } from '../types';
 import { dataOnScreen1, dataOnScreen2, formFilledData1, formFilledData2 } from './mocks/filledData';
-import { EXPENSEFORM_UI_ELEMENTS, EXPENSE_ADD_BUTTON, EXPENSE_DELETE_BUTTON, FORMHEADER_ELEMENTS } from './utils/constantes';
-import { fillFormAndVerifyValues, verifyFormDefaultValues } from './utils/helperFunctions';
+import { EXPENSEFORM_UI_ELEMENTS, EXPENSE_ADD_BUTTON, EXPENSE_CANCEL_EDIT_BUTTON, EXPENSE_DELETE_BUTTON, EXPENSE_EDIT_BUTTON, EXPENSE_SAVE_EDIT_BUTTON, FORMHEADER_ELEMENTS } from './utils/constantes';
+import { fillFormAndVerifyValues, verifyFormDefaultValues, verifyFormEditModeValues } from './utils/helperFunctions';
 
 describe('Test UI Elements on Wallet Page', () => {
   it('should have a header with logo, total expense and user email', () => {
@@ -89,5 +89,80 @@ describe('User can delete exmpenses', async () => {
 
     expect(deleteExpenseButton).toBeInTheDocument();
     await userEvent.click(deleteExpenseButton);
+  });
+});
+
+describe('Test  Wallet Page on edit mode', () => {
+  it('should change the ExpenseForm to edit mode', async () => {
+    renderWithRouterAndRedux(<Wallet />);
+    await fillFormAndVerifyValues(formFilledData1);
+
+    dataOnScreen1.forEach(async (expenseData) => {
+      const expenseInfo = await screen.findByText(expenseData);
+      expect(expenseInfo).toBeInTheDocument();
+    });
+
+    const enableEditModeButton = screen.getByTestId(EXPENSE_EDIT_BUTTON);
+
+    await userEvent.click(enableEditModeButton);
+
+    await waitFor(() => {
+      const addExpenseButton = screen.queryByRole('button', { name: EXPENSE_ADD_BUTTON });
+      expect(addExpenseButton).not.toBeInTheDocument();
+    });
+
+    const editExepenseButton = screen.getByRole('button', { name: EXPENSE_SAVE_EDIT_BUTTON });
+    const cancelExepenseButton = screen.getByRole('button', { name: EXPENSE_CANCEL_EDIT_BUTTON });
+
+    expect(editExepenseButton).toBeInTheDocument();
+    expect(cancelExepenseButton).toBeInTheDocument();
+  });
+
+  it('should change the ExpenseForm to register mode if clicked the cancel button', async () => {
+    renderWithRouterAndRedux(<Wallet />);
+    await fillFormAndVerifyValues(formFilledData1);
+
+    dataOnScreen1.forEach(async (expenseData) => {
+      const expenseInfo = await screen.findByText(expenseData);
+      expect(expenseInfo).toBeInTheDocument();
+    });
+
+    const enableEditModeButton = screen.getByTestId(EXPENSE_EDIT_BUTTON);
+
+    await userEvent.click(enableEditModeButton);
+
+    await waitFor(() => {
+      const addExpenseButton = screen.queryByRole('button', { name: EXPENSE_ADD_BUTTON });
+      expect(addExpenseButton).not.toBeInTheDocument();
+    });
+
+    const editExepenseButton = screen.getByRole('button', { name: EXPENSE_SAVE_EDIT_BUTTON });
+    const cancelExepenseButton = screen.getByRole('button', { name: EXPENSE_CANCEL_EDIT_BUTTON });
+
+    expect(editExepenseButton).toBeInTheDocument();
+    expect(cancelExepenseButton).toBeInTheDocument();
+
+    await userEvent.click(cancelExepenseButton);
+
+    await waitFor(() => {
+      const addExpenseButton = screen.getByRole('button', { name: EXPENSE_ADD_BUTTON });
+      expect(addExpenseButton).toBeInTheDocument();
+      expect(editExepenseButton).not.toBeInTheDocument();
+    });
+  });
+
+  it('The ExpenseForm should be filled with the expense selected to edit', async () => {
+    renderWithRouterAndRedux(<Wallet />);
+    await fillFormAndVerifyValues(formFilledData1);
+
+    dataOnScreen1.forEach(async (expenseData) => {
+      const expenseInfo = await screen.findByText(expenseData);
+      expect(expenseInfo).toBeInTheDocument();
+    });
+
+    const enableEditModeButton = screen.getByTestId(EXPENSE_EDIT_BUTTON);
+    await userEvent.click(enableEditModeButton);
+
+    await verifyFormEditModeValues(formFilledData1);
   });
 });
