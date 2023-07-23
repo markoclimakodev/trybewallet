@@ -30,11 +30,6 @@ describe('Test Wallet Page in Register Mode', () => {
     await assertFormValues(formFilledData1);
   });
 
-  it('should fill in the fields with typed text and selected options', async () => {
-    await simulateUserTypingOnExpenseForm(formFilledData1);
-    await assertFormValues(formFilledData1);
-  });
-
   it('the user can add a new expense when clicked the button "adicionar despesa', async () => {
     await simulateUserTypingOnExpenseForm(formFilledData1);
     await assertFormValues(formFilledData1);

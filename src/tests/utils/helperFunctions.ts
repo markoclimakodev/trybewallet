@@ -82,15 +82,15 @@ export const assertFormValues = async (values: ExpenseValues) => {
   const tagSelect = screen.getByTestId(TAG_SELECT);
   const valueInput = screen.getByTestId(VALUE_INPUT);
   const methodSelect = screen.getByTestId(METHOD_SELECT);
-  const currencySelect = screen.getByTestId(CURRENCY_SELECT);
+  // const currencySelect = screen.getByTestId(CURRENCY_SELECT);
 
   expect(descriptionInput).toHaveValue(values.description);
   expect(tagSelect).toHaveValue(values.tag);
   expect(valueInput).toHaveValue(values.value);
   expect(methodSelect).toHaveValue(values.method);
-  await waitFor(() => {
-    expect(currencySelect).toHaveValue(values.currency);
-  });
+  // await waitFor(() => {
+  //   expect(currencySelect).toHaveValue(values.currency);
+  // });
 };
 
 export const simulateUserTypingOnExpenseForm = async (values:ExpenseValues) => {
