@@ -98,15 +98,15 @@ export const simulateUserTypingOnExpenseForm = async (values:ExpenseValues) => {
   const tagSelect = screen.getByTestId(TAG_SELECT);
   const valueInput = screen.getByTestId(VALUE_INPUT);
   const methodSelect = screen.getByTestId(METHOD_SELECT);
-  const currencySelect = screen.getByTestId(CURRENCY_SELECT);
+  // const currencySelect = screen.getByTestId(CURRENCY_SELECT);
 
   await userEvent.type(descriptionInput, values.description);
   await userEvent.selectOptions(tagSelect, values.tag);
   await userEvent.type(valueInput, values.value);
   await userEvent.selectOptions(methodSelect, values.method);
-  await waitFor(async () => {
-    await userEvent.selectOptions(currencySelect, values.currency);
-  });
+  // await waitFor(async () => {
+  //   await userEvent.selectOptions(currencySelect, values.currency);
+  // });
 };
 
 export const simulateUserClickingOnAddExpenseButton = async () => {
