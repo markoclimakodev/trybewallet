@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import Wallet from '../pages/Wallet';
 import { renderWithRouterAndRedux } from './helpers/renderWith';
-import { BTN_ADD, CURRENCY_INPUT, DESCRIPTION_INPUT, EMAIL_FIELD, EMAIL_INPUT, HEADER_CURRENCY_FIELD, LOGIN_BUTTON, METHOD_INPUT, PASSWORD_INPUT, TAG_INPUT, VALID_TEST_EMAIL, VALID_TEST_PASSWORD, VALUE_INPUT } from './utils/constantes';
+import { BTN_ADD, CURRENCY_SELECT, DESCRIPTION_INPUT, EMAIL_FIELD, EMAIL_INPUT, HEADER_CURRENCY_FIELD, LOGIN_BUTTON, METHOD_SELECT, PASSWORD_INPUT, TAG_SELECT, VALID_TEST_EMAIL, VALID_TEST_PASSWORD, VALUE_INPUT } from './utils/constantes';
 
 describe('Wallet page Component Tests', () => {
   it('Renders the wallet page with all ui elements', async () => {
@@ -27,10 +27,10 @@ describe('Wallet page Component Tests', () => {
     expect(headerCurrencyField).toHaveTextContent('0.00');
 
     const descriptionInput = screen.getByTestId(DESCRIPTION_INPUT);
-    const tagInput = screen.getByTestId(TAG_INPUT);
+    const tagInput = screen.getByTestId(TAG_SELECT);
     const valueInput = screen.getByTestId(VALUE_INPUT);
-    const methodInput = screen.getByTestId(METHOD_INPUT);
-    const currencyInput = screen.getByTestId(CURRENCY_INPUT);
+    const methodInput = screen.getByTestId(METHOD_SELECT);
+    const currencyInput = screen.getByTestId(CURRENCY_SELECT);
     const expenseTable = screen.getByRole('table');
     const addExpenseBtn = screen.getByRole('button', {
       name: BTN_ADD,
@@ -43,9 +43,9 @@ describe('Wallet page Component Tests', () => {
     renderWithRouterAndRedux(<Wallet />);
 
     const descriptionInput = screen.getByTestId(DESCRIPTION_INPUT);
-    const tagInput = screen.getByTestId(TAG_INPUT);
+    const tagInput = screen.getByTestId(TAG_SELECT);
     const valueInput = screen.getByTestId(VALUE_INPUT);
-    const methodInput = screen.getByTestId(METHOD_INPUT);
+    const methodInput = screen.getByTestId(METHOD_SELECT);
 
     expect(descriptionInput).toHaveValue('');
     expect(tagInput).toHaveValue('Alimentação');

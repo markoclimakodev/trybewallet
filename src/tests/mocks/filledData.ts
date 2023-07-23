@@ -1,17 +1,25 @@
+export const initalValues = {
+  value: '',
+  description: '',
+  currency: 'USD',
+  method: 'Dinheiro',
+  tag: 'Alimentação',
+};
+
 export const formFilledData1 = {
   value: '23.50',
-  description: 'Frango frito',
+  description: 'Academia',
   currency: 'USD',
   method: 'Cartão de crédito',
-  tag: 'Alimentação',
+  tag: 'Saúde',
 };
 
 export const dataOnScreen1 = [
   '23.50',
-  'Frango frito',
+  'Academia',
   'USD',
   'Cartão de crédito',
-  'Alimentação',
+  'Saúde',
 ];
 
 export const formFilledData2 = {

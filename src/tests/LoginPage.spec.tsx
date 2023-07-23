@@ -3,71 +3,53 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import Login from '../pages/Login';
 import { renderWithRouterAndRedux } from './helpers/renderWith';
-import { EMAIL_INITAL_STATE, EMAIL_INPUT, INVALID_TEST_EMAIL, INVALID_TEST_PASSWORD, LOGIN_BUTTON, PASSWORD_INITAL_STATE, PASSWORD_INPUT, VALID_TEST_EMAIL, VALID_TEST_PASSWORD } from './utils/constantes';
+import { EMAIL_INPUT, INVALID_TEST_EMAIL, INVALID_TEST_PASSWORD, LOGIN_BUTTON, PASSWORD_INPUT, VALID_TEST_EMAIL, VALID_TEST_PASSWORD } from './utils/constantes';
+import { checkLoginButtonIsDisabled, checkLoginButtonIsEnabled, simulateUserTyping } from './utils/helperFunctions';
 
-describe('LoginForm Component Tests', () => {
-  it('Renders the login form with initial state', () => {
+describe('User Actions on Login Page', () => {
+  it('should renders the LoginForm with the initial state', () => {
     renderWithRouterAndRedux(<Login />);
 
     const email = screen.getByTestId(EMAIL_INPUT);
     const password = screen.getByTestId(PASSWORD_INPUT);
-    const loginBtn = screen.getByRole('button', { name: LOGIN_BUTTON });
 
-    expect(email).toHaveValue(EMAIL_INITAL_STATE);
-    expect(password).toHaveValue(PASSWORD_INITAL_STATE);
+    expect(email).toHaveValue('');
+    expect(password).toHaveValue('');
 
-    expect(loginBtn).toBeDisabled();
+    checkLoginButtonIsDisabled();
   });
 
-  it('The login button is disabled when the email and password are invalid', async () => {
+  it('the login button should be disabled if both email and password are invalid.', async () => {
     renderWithRouterAndRedux(<Login />);
-
-    const email = screen.getByTestId(EMAIL_INPUT);
-    const password = screen.getByTestId(PASSWORD_INPUT);
-    const loginBtn = screen.getByRole('button', { name: LOGIN_BUTTON });
-
-    expect(loginBtn).toBeDisabled();
-
-    await userEvent.type(email, INVALID_TEST_EMAIL);
-    await userEvent.type(password, VALID_TEST_PASSWORD);
-
-    expect(loginBtn).toBeDisabled();
-
-    userEvent.clear(email);
-    userEvent.clear(password);
-
-    await userEvent.type(email, VALID_TEST_EMAIL);
-    await userEvent.type(password, INVALID_TEST_PASSWORD);
-
-    expect(loginBtn).toBeDisabled();
+    checkLoginButtonIsDisabled();
+    await simulateUserTyping(INVALID_TEST_EMAIL, INVALID_TEST_PASSWORD);
+    checkLoginButtonIsDisabled();
   });
 
-  it('The login button is enable when the email and password are valid', async () => {
+  it('the login button should be disabled if email or password are invalid.', async () => {
     renderWithRouterAndRedux(<Login />);
-
-    const email = screen.getByTestId(EMAIL_INPUT);
-    const password = screen.getByTestId(PASSWORD_INPUT);
-    const loginBtn = screen.getByRole('button', { name: LOGIN_BUTTON });
-
-    expect(loginBtn).toBeDisabled();
-
-    await userEvent.type(email, VALID_TEST_EMAIL);
-    await userEvent.type(password, VALID_TEST_PASSWORD);
-
-    expect(loginBtn).toBeEnabled();
+    checkLoginButtonIsDisabled();
+    await simulateUserTyping(INVALID_TEST_EMAIL, INVALID_TEST_PASSWORD);
+    checkLoginButtonIsDisabled();
   });
 
-  it('Redirects to "/carteira" when the login button is clicked', async () => {
+  it('the login button should be enabled if both email and password are valid.', async () => {
+    renderWithRouterAndRedux(<Login />);
+    checkLoginButtonIsDisabled();
+    await simulateUserTyping(VALID_TEST_EMAIL, VALID_TEST_PASSWORD);
+    checkLoginButtonIsEnabled();
+  });
+
+  it('should redirects to "/carteira" when the login button is clicked', async () => {
     renderWithRouterAndRedux(<App />);
 
-    const email = screen.getByTestId(EMAIL_INPUT);
-    const password = screen.getByTestId(PASSWORD_INPUT);
     const loginBtn = screen.getByRole('button', { name: LOGIN_BUTTON });
 
-    await userEvent.type(email, VALID_TEST_EMAIL);
-    await userEvent.type(password, VALID_TEST_PASSWORD);
+    checkLoginButtonIsDisabled();
 
-    expect(loginBtn).toBeEnabled();
+    await simulateUserTyping(VALID_TEST_EMAIL, VALID_TEST_PASSWORD);
+
+    checkLoginButtonIsEnabled();
 
     await userEvent.click(loginBtn);
 
