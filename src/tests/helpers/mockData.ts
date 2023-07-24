@@ -168,6 +168,7 @@ export const mockData = {
     timestamp: '1653943563',
     create_date: '2022-05-30 17:46:03',
   },
+
   ETH: {
     code: 'ETH',
     codein: 'BRL',

@@ -1,4 +1,14 @@
-export const initalValues = {
+export interface FormData {
+  value: string;
+  description: string;
+  currency: string;
+  method: string;
+  tag: string;
+}
+
+export type ExpectedFormData = string[];
+
+export const initialValues:FormData = {
   value: '',
   description: '',
   currency: 'USD',
@@ -6,7 +16,7 @@ export const initalValues = {
   tag: 'Alimentação',
 };
 
-export const formFilledData1 = {
+export const formData1:FormData = {
   value: '23.50',
   description: 'Academia',
   currency: 'USD',
@@ -14,7 +24,7 @@ export const formFilledData1 = {
   tag: 'Saúde',
 };
 
-export const dataOnScreen1 = [
+export const expectedFormData1:ExpectedFormData = [
   '23.50',
   'Academia',
   'USD',
@@ -22,7 +32,7 @@ export const dataOnScreen1 = [
   'Saúde',
 ];
 
-export const formFilledData2 = {
+export const formData2:FormData = {
   value: '13.60',
   description: 'Balada',
   currency: 'CAD',
@@ -30,7 +40,7 @@ export const formFilledData2 = {
   tag: 'Lazer',
 };
 
-export const dataOnScreen2 = [
+export const expectedFormData2:ExpectedFormData = [
   '13.60',
   'Balada',
   'CAD',

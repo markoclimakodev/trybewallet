@@ -1,18 +1,14 @@
-import { screen } from '@testing-library/dom';
+import { screen, waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
+import { FormData } from '../mocks/filledData';
 import {
   BTN_ADD,
-  BTN_EDIT,
-  CURRENCY_SELECT,
-  DESCRIPTION_INPUT,
-  EMAIL_FIELD,
+  BTN_CANCEL_EDIT,
+  BTN_DELETE,
+  BTN_EDIT_EXPENSE,
   EMAIL_INPUT,
-  HEADER_CURRENCY_FIELD,
   LOGIN_BUTTON,
-  METHOD_SELECT,
   PASSWORD_INPUT,
-  TAG_SELECT,
-  VALUE_INPUT,
 } from './constantes';
 
 export const simulateUserTypingOnLoginPage = async (
@@ -43,94 +39,117 @@ export const checkLoginButtonIsEnabled = () => {
   expect(loginBtn).toBeEnabled();
 };
 
-export const checkUIElementsArePresent = () => {
-  const userEmailField = screen.getByTestId(EMAIL_FIELD);
-  const headerCurrencyField = screen.getByTestId(HEADER_CURRENCY_FIELD);
-  const descriptionInput = screen.getByTestId(DESCRIPTION_INPUT);
-  const tagSelect = screen.getByTestId(TAG_SELECT);
-  const valueInput = screen.getByTestId(VALUE_INPUT);
-  const methodSelect = screen.getByTestId(METHOD_SELECT);
-  const currencySelect = screen.getByTestId(CURRENCY_SELECT);
+export const checkIfTableIsPresent = () => {
   const expenseTable = screen.getByRole('table');
-  const addExpenseBtn = screen.getByRole('button', {
-    name: BTN_ADD,
-  });
-  const uiElementes = [
-    userEmailField,
-    headerCurrencyField,
-    descriptionInput,
-    tagSelect,
-    valueInput,
-    methodSelect,
-    currencySelect,
-    addExpenseBtn,
+  const descriptionColumn = screen.getByRole('columnheader', { name: /descrição/i });
+  const tagColumn = screen.getByRole('combobox', { name: /categoria da despesa/i });
+  const methodColumn = screen.getByRole('columnheader', { name: /método de pagamento/i });
+  const valueColumn = screen.getByRole('columnheader', { name: /editar\/excluir/i });
+  const exchangeRateColumn = screen.getByRole('columnheader', { name: /câmbio utilizado/i });
+  const convertedValueColumn = screen.getByRole('columnheader', { name: /valor convertido/i });
+  const conversionCurrencyColumn = screen.getByRole('columnheader', { name: /moeda de conversão/i });
+  const editDeleteColumn = screen.getByRole('columnheader', { name: /editar\/excluir/i });
+  const expenseTableElements = [
     expenseTable,
+    descriptionColumn,
+    tagColumn,
+    methodColumn,
+    valueColumn,
+    exchangeRateColumn,
+    convertedValueColumn,
+    conversionCurrencyColumn,
+    editDeleteColumn,
   ];
-  uiElementes.forEach((uiElement) => expect(uiElement).toBeInTheDocument());
+
+  expenseTableElements
+    .forEach((tableElement) => expect(tableElement).toBeInTheDocument());
 };
 
-type ExpenseValues = {
-  value: string,
-  description: string,
-  currency: string,
-  method: string,
-  tag:string,
+export const assertFormValues = async (formData: FormData) => {
+  const descriptionInput = screen.getByRole('textbox', { name: /Descrição da despesa/i });
+  const tagSelect = screen.getByRole('combobox', { name: /Categoria da despesa/i });
+  const valueInput = screen.getByRole('textbox', { name: /valor/i });
+  const methodSelect = screen.getByRole('combobox', { name: /Método de pagamento/i });
+  const currencySelect = await screen.findByRole('combobox', { name: /Moeda/i });
+
+  expect(descriptionInput).toHaveValue(formData.description);
+  expect(tagSelect).toHaveValue(formData.tag);
+  expect(valueInput).toHaveValue(formData.value);
+  expect(methodSelect).toHaveValue(formData.method);
+  expect(currencySelect).toHaveValue(formData.currency);
 };
 
-export const assertFormValues = async (values: ExpenseValues) => {
-  const descriptionInput = screen.getByTestId(DESCRIPTION_INPUT);
-  const tagSelect = screen.getByTestId(TAG_SELECT);
-  const valueInput = screen.getByTestId(VALUE_INPUT);
-  const methodSelect = screen.getByTestId(METHOD_SELECT);
-  // const currencySelect = screen.getByTestId(CURRENCY_SELECT);
-
-  expect(descriptionInput).toHaveValue(values.description);
-  expect(tagSelect).toHaveValue(values.tag);
-  expect(valueInput).toHaveValue(values.value);
-  expect(methodSelect).toHaveValue(values.method);
-  // await waitFor(() => {
-  //   expect(currencySelect).toHaveValue(values.currency);
-  // });
+export const simulateUserTyping = async (formData: FormData) => {
+  const descriptionInput = screen.getByRole('textbox', { name: /Descrição da despesa/i });
+  const tagSelect = screen.getByRole('combobox', { name: /Categoria da despesa/i });
+  const valueInput = screen.getByRole('textbox', { name: /valor/i });
+  const methodSelect = screen.getByRole('combobox', { name: /Método de pagamento/i });
+  const currencySelect = await screen.findByRole('combobox', { name: /Moeda/i });
+  await userEvent.type(descriptionInput, formData.description);
+  await userEvent.selectOptions(tagSelect, formData.tag);
+  await userEvent.type(valueInput, formData.value);
+  await userEvent.selectOptions(methodSelect, formData.method);
+  await userEvent.selectOptions(currencySelect, formData.currency);
 };
 
-export const simulateUserTypingOnExpenseForm = async (values:ExpenseValues) => {
-  const descriptionInput = screen.getByTestId(DESCRIPTION_INPUT);
-  const tagSelect = screen.getByTestId(TAG_SELECT);
-  const valueInput = screen.getByTestId(VALUE_INPUT);
-  const methodSelect = screen.getByTestId(METHOD_SELECT);
-  // const currencySelect = screen.getByTestId(CURRENCY_SELECT);
+export const assertFormTypedValues = async (formData: FormData) => {
+  const descriptionInput = screen.getByRole('textbox', { name: /Descrição da despesa/i });
+  const tagSelect = screen.getByRole('combobox', { name: /Categoria da despesa/i });
+  const valueInput = screen.getByRole('textbox', { name: /valor/i });
+  const methodSelect = screen.getByRole('combobox', { name: /Método de pagamento/i });
+  const currencySelect = await screen.findByRole('combobox', { name: /Moeda/i });
 
-  await userEvent.type(descriptionInput, values.description);
-  await userEvent.selectOptions(tagSelect, values.tag);
-  await userEvent.type(valueInput, values.value);
-  await userEvent.selectOptions(methodSelect, values.method);
-  // await waitFor(async () => {
-  //   await userEvent.selectOptions(currencySelect, values.currency);
-  // });
+  await waitFor(() => {
+    expect(descriptionInput).toHaveValue(formData.description);
+    expect(tagSelect).toHaveValue(formData.tag);
+    expect(valueInput).toHaveValue(formData.value);
+    expect(methodSelect).toHaveValue(formData.method);
+    expect(currencySelect).toHaveValue(formData.currency);
+  });
 };
 
-export const simulateUserClickingOnAddExpenseButton = async () => {
+export const simulateUserAddingAnExpense = async (expense: string[]) => {
   const addExpenseBtn = screen.getByRole('button', {
     name: BTN_ADD,
   });
 
   await userEvent.click(addExpenseBtn);
-};
-
-export const assertExpensesWereAdded = async (expense: string[]) => {
   expense.forEach(async (expenseData) => {
     const expenseInfo = await screen.findByText(expenseData);
     expect(expenseInfo).toBeInTheDocument();
   });
 };
 
-export const assertExpensesWereDeleted = async (expense: string) => {
-  const deletedExpense = screen.queryByTestId(expense);
-  expect(deletedExpense).not.toBeInTheDocument();
+export const simulateUserEditingAnExpense = async () => {
+  const editBtn = await screen.findByTestId('edit-btn');
+  expect(editBtn).toBeInTheDocument();
+  await userEvent.click(editBtn);
 };
 
-export const simulateUserActivingEditMode = async () => {
-  const editModeBtn = await screen.findByTestId(BTN_EDIT);
-  expect(editModeBtn).toBeInTheDocument();
-  await userEvent.click(editModeBtn);
+export const simulateUserDeletingAnExpense = async (expense: string[]) => {
+  const editBtn = await screen.findByTestId(BTN_DELETE);
+  await userEvent.click(editBtn);
+  expense.forEach(async (expenseData) => {
+    const expenseInfo = await screen.findByRole('cell', {
+      name: expenseData,
+    });
+    expect(expenseInfo).not.toBeInTheDocument();
+  });
+};
+
+export const simulateUserSaveAnEditedExpense = async (expense: string[]) => {
+  const saveEdit = screen.getByRole('button', {
+    name: BTN_EDIT_EXPENSE,
+  });
+
+  await userEvent.click(saveEdit);
+  expense.forEach(async (expenseData) => {
+    const expenseInfo = await screen.findByText(expenseData);
+    expect(expenseInfo).toBeInTheDocument();
+  });
+};
+
+export const simulateUserCancelExpenseEdit = async () => {
+  const cancelEdit = screen.getByRole('button', { name: BTN_CANCEL_EDIT });
+  await userEvent.click(cancelEdit);
 };
