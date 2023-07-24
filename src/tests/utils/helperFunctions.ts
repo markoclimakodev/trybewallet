@@ -115,7 +115,9 @@ export const simulateUserAddingAnExpense = async (expense: string[]) => {
 
   await userEvent.click(addExpenseBtn);
   expense.forEach(async (expenseData) => {
-    const expenseInfo = await screen.findByText(expenseData);
+    const expenseInfo = await screen.findByRole('cell', {
+      name: expenseData,
+    });
     expect(expenseInfo).toBeInTheDocument();
   });
 };
